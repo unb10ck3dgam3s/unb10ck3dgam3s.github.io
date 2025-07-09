@@ -14,24 +14,21 @@
                     alt: link.querySelector('img').getAttribute('alt')
                 }));
             });
-        // --- Search Bar Dropdown Logic ---
         window.showSearchResults = function() {
-            const input = document.getElementById('gameSearchInput');
+            const input = document.getElementById('gameSearchInput').value.toLowerCase();
             const results = document.getElementById('searchResults');
-            if (!input || !results || !window.gamesData) return;
-            const value = input.value.toLowerCase();
             results.innerHTML = '';
-            if (!value) {
+            if (!input || !window.gamesData) {
                 results.style.display = 'none';
                 return;
             }
-            let filtered = window.gamesData.filter(game => game.name.toLowerCase().includes(value));
+            let filtered = window.gamesData.filter(game => game.name.toLowerCase().includes(input));
             filtered = filtered.sort((a, b) => a.name.localeCompare(b.name));
             if (filtered.length === 0) {
                 results.style.display = 'none';
                 return;
             }
-            filtered.slice(0, 8).forEach(game => {
+            filtered.forEach(game => {
                 const li = document.createElement('li');
                 li.className = 'search-result-item';
                 li.innerHTML = `<a href="${game.url}"><img src="${game.img}" alt="${game.alt}" class="search-result-icon">${game.name}</a>`;
