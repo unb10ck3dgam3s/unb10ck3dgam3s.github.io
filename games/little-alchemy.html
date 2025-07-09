@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404playground</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            color: #5a2d0c;
+        }
+        h2 {
+            color: #b85c38;
+            text-shadow: 1px 1px 8px #fff3e0;
+        }
+        .fullscreen-btn {
+            display: block;
+            position: static;
+            margin: 24px auto 0 auto;
+            background: #ff7e5f;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 0.5rem 1.2rem;
+            font-size: 2rem;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(255, 126, 95, 0.2);
+            transition: background 0.2s;
+        }
+        .fullscreen-btn:hover {
+            background: #feb47b;
+            font: 1rem;
+        }
+        .game-center-container {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .game-center-container iframe {
+            background: #fff3e0;
+            border-radius: 14px;
+            box-shadow: 0 4px 24px rgba(255, 126, 95, 0.15);
+            border: 2px solid #fcb69f;
+            width: 80vw;
+            max-width: 900px;
+            height: 70vh;
+        }
+    </style>
+</head>
+<body>
+    <h2>Retro Bowl College</h2>
+    <a href="../index.html">Home Page</a><br>
+    <a href="/games/cookie-clicker.html">cookie clicker</a><br>
+    <a href="/games/retro-bowl-college.html">retro bowl college</a><br>
+    <a href="/games/club-penguin-legacy.html">club penguin legacy</a><br>
+    <a href="/games/minecraft.html">minecraft</a><br>
+    <a href="/games/volley-random.html">volley random</a><br>
+    <a href="/games/where-is-my-water.html">where is my water</a><br>
+    <a href="/games/kawai-run-2.html">kawai run 2</a><br>
+    <a href="/games/krunker.io.html">krunker.io</a><br>
+    <a href="/games/learn2fly2.html">learn to fly 2</a><br>
+    <a href="/games/little-alchemy-2.html">little alchemy 2</a><br>
+    <a href="/games/madalin-stunt-cars-2.html">madalin stunt cars 2</a><br>
+    <a href="/games/makeitmeme.html">make it meme</a><br>
+    <a href="/games/marble_skies.html">marble skies</a><br>
+    <a href="/games/lolbeans.io.html">lolbeans.io</a><br>
+    <div class="game-center-container">
+        <iframe class="gameloc" id="gameFrame" allowfullscreen="" allow="autoplay; fullscreen; camera; focus-without-user-activation *; monetization; gamepad;
+           keyboard-map *; xr-spatial-tracking; clipboard-write" name="gameFrame" scrolling="no" sandbox="allow-forms allow-modals allow-orientation-lock allow-pointer-lock
+          allow-popups allow-popups-to-escape-sandbox allow-presentation allow-scripts allow-same-origin
+          allow-downloads" src="https://maddox.page/basic-ruffle-player/html/little_alchemy_2/index.html" title="Game"></iframe>
+        <button class="fullscreen-btn" onclick="fullscreenIframe()">Fullscreen</button>
+    </div>
+    <script>
+        function fullscreenIframe() {
+            const iframe = document.getElementById('gameFrame');
+            if (iframe.requestFullscreen) {
+                iframe.requestFullscreen();
+            } else if (iframe.mozRequestFullScreen) {
+                iframe.mozRequestFullScreen();
+            } else if (iframe.webkitRequestFullscreen) {
+                iframe.webkitRequestFullscreen();
+            } else if (iframe.msRequestFullscreen) {
+                iframe.msRequestFullscreen();
+            }
+        }
+    </script>
+</body>
+</html>
