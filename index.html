@@ -12,7 +12,7 @@
 <body>
     <nav class="navbar">
         <a href="/" class="navbar-title">unb10ck3dgam3s</a>
-        <form class="navbar-search" onsubmit="return false;">
+        <form class="navbar-search" id="searchForm" onsubmit="return false;">
             <input type="text" id="gameSearchInput" placeholder="Search games..." aria-label="Search games" autocomplete="off" oninput="showSearchResults()">
             <button type="submit">🔍</button>
             <ul id="searchResults" class="search-results-list"></ul>
@@ -21,248 +21,266 @@
     <div class="main-content-wrapper">
         <h1>freak you harry heh</h1>
         <div class="game-list">
-    <a href="/games/cookie-clicker.html" class="img-link">
-    <img class="game-images" src="https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/cookieclicker.webp" alt="Cookie Clicker">
-    <span class="img-hover-text">Cookie Clicker</span>
-    </a></img><br>
-    <a href="/games/retro-bowl-college.html" class="img-link">
-    <img class="game-images" src="https://img.poki-cdn.com/cdn-cgi/image/quality=78,width=314,height=314,fit=cover,f=auto/d98547374c4129bf441b754d495e41aa.png" alt="retro bowl college">
-    <span class="img-hover-text">Retro Bowl College</span>
-</a><br>
-<a href="/games/club-penguin-legacy.html" class="img-link">
-    <img class="game-images" src="https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/clubpenguin.webp" alt="club penguin legacy">
-    <span class="img-hover-text">Club Penguin Legacy</span>
-</a><br>
-<a href="/games/minecraft.html" class="img-link">
-    <img class="game-images" src="https://images.icon-icons.com/2699/PNG/512/minecraft_logo_icon_168974.png" alt="minecraft">
-    <span class="img-hover-text">Minecraft</span>
-</a><br>
-<a href="/games/volley-random.html" class="img-link">
-    <img class="game-images" src="https://scout.wgimager.com/f_webp/q_90/https://static.wgplayground.com/759df58c48c52d9ec5692531607df6d6/wgplayground/ef27e9f2407a0e086cd29a604e83a66f.jpg" alt="volley random">
-    <span class="img-hover-text">Volley Random</span>
-</a><br>
-<a href="/games/kawai-run-2.html" class="img-link">
-    <img class="game-images" src="https://i.ytimg.com/vi/xJCFnIS-5X0/hqdefault.jpg" alt="kawai run 2">
-    <span class="img-hover-text">Kawai Run 2</span>
-</a><br>
-<a href="/games/krunker.io.html" class="img-link">
-    <img class="game-images" src="https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/krunker.io.webp" alt="krunker.io">
-    <span class="img-hover-text">Krunker.io</span>
-</a><br>
-<a href="/games/learn2fly2.html" class="img-link">
-    <img class="game-images" src="https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/learntofly2.webp" alt="learn to fly 2">
-    <span class="img-hover-text">Learn 2 Fly 2</span>
-</a><br>
-<a href="/games/little-alchemy-2.html" class="img-link">
-    <img class="game-images" src="https://play-lh.googleusercontent.com/3Pr4gCB3uzsYyoFZZiDOuvq_7SeQPjUQnHiUrwug154RnTGJ_YAX5zvZfCH-4r2JKBOX" alt="little alchemy 2">
-    <span class="img-hover-text">Little Alchemy 2</span>
-</a><br>
-<a href="/games/madalin-stunt-cars-2.html" class="img-link">
-    <img class="game-images" src="https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/madalin.webp" alt="madalin stunt cars 2">
-    <span class="img-hover-text">Madalin Stunt Cars 2</span>
-</a><br>
-<a href="/games/marble-skies.html" class="img-link">
-    <img class="game-images" src="https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/marble_skies.webp" alt="marble skies">
-    <span class="img-hover-text">Marble Skies</span>
-</a><br>
-<a href="/games/lolbeans.io.html" class="img-link">
-    <img class="game-images" src="https://www.kidssearch.com/images/LOLBeans-io-Game.png" alt="lolbeans.io">
-    <span class="img-hover-text">Lolbeans.IO</span>
-</a><br>
-<a href="/games/masked-special-forces.html" class="img-link">
-    <img class="game-images" src="https://unblocked-games.s3.amazonaws.com/media/posts/310/512-2.jpg" alt="masked special forces">
-    <span class="img-hover-text">Masked Special Forces</span>
-</a><br>
-<a href="/games/math-duck.html" class="img-link">
-    <img class="game-images" src="https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/math-duck.webp" alt="math duck">
-    <span class="img-hover-text">Math Duck</span>
-</a><br>
-<a href="/games/super-meat-boy.html" class="img-link">
-    <img class="game-images" src="https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/meat.webp" alt="meat boy">
-    <span class="img-hover-text">Super Meat Boy</span>
-</a><br>
-<a href="/games/spider-dude-parkour.html" class="img-link">
-    <img class="game-images" src="https://kbhgames.com/wp-content/uploads/2024/06/Spider-Dude-Parkour.png" alt="Spider Dude Parkour">
-    <span class="img-hover-text">Spider Dude Parkour</span>
-</a><br>
-<a href="/games/monkey-mart.html" class="img-link">
-    <img class="game-images" src="https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/monkey-mart.webp" alt="monkey mart">
-    <span class="img-hover-text">Monkey Mart</span>
-</a><br>
-<a href="/games/snow-rider-3d.html" class="img-link">
-    <img class="game-images" src="https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/snowrider3d.webp" alt="snow rider 3d">
-    <span class="img-hover-text">Snow Rider 3D</span>
-</a><br>
-<a href="/games/eggshock.html" class="img-link">
-    <img class="game-images" src="https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/shell-shockers.webp" alt="eggshock">
-    <span class="img-hover-text">Shell Shockers</span>
-</a><br>
-<a href="/games/blocky-puzzle.html" class="img-link">
-    <img class="game-images" src="https://play-lh.googleusercontent.com/mBpKOJBdmZLHFEfIMT0s27O-jX4MyAXqX-vhugHlTE0FKj188WmFCRElxY-inKX1tMA" alt="eggshock">
-    <span class="img-hover-text">Blocky Puzzle</span>
-</a><br>
-<a href="/games/deadshot.io.html" class="img-link">
-    <img class="game-images" src="https://cdn.now.gg/apps-content/com.nowgg.h5.pub501.app51613/icon/deadshot.png" alt="eggshock">
-    <span class="img-hover-text">Deadshot.IO</span>
-    </a><br>
-    <a href="/games/bike-obby.html" class="img-link">
-    <img class="game-images" src="https://play-lh.googleusercontent.com/YwxYsY3FW_zhGTZuYjT9MOpv48FKKl90uyM4eyqOjVCPLEbosk2NALJc64arXdPhjq7d" alt="eggshock">
-    <span class="img-hover-text">Obby But You'Re On A Bike</span>
-    </a><br>
-    <a href="/games/bitlife.html" class="img-link">
-    <img class="game-images" src="https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/bitlife.webp" alt="eggshock">
-    <span class="img-hover-text">BitLife</span>
-    </a><br>
     <a href="/games/2048.html" class="img-link">
-    <img class="game-images" src="https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/2048.webp" alt="eggshock">
+    <img class="game-images" src="https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/2048.webp" alt="2048">
     <span class="img-hover-text">2048</span>
     </a><br>
+    <a href="/games/1v1lol.html" class="img-link">
+    <img class="game-images" src="https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/1v1.lol-old.webp" alt="1v1.LOL">
+    <span class="img-hover-text">1v1.LOL</span>
+    </a><br>
     <a href="/games/angry-birds-slingshot-frenzy.html" class="img-link">
-    <img class="game-images" src="https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/birdangry.webp" alt="eggshock">
+    <img class="game-images" src="https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/birdangry.webp" alt="Angry Birds Slingshot Frenzy">
     <span class="img-hover-text">Angry Birds Slingshot Frenzy</span>
     </a><br>
-    <a href="/games/basketball-legends.html" class="img-link">
-    <img class="game-images" src="https://img.poki-cdn.com/cdn-cgi/image/quality=78,width=314,height=314,fit=cover,f=auto/a1d3004c30bfd422125e43a558629ad4.png" alt="eggshock">
-    <span class="img-hover-text">Basketball Legends</span>
-    </a><br>
-    <a href="/games/basket-random.html" class="img-link">
-    <img class="game-images" src="https://scout.wgimager.com/f_webp/q_90/https://static.wgplayground.com/43105ae03bf75070f5e80a76bb59ac6e/wgplayground/c8a520f67cc563041d2a75bd8223939e.jpg" alt="eggshock">
-    <span class="img-hover-text">Basket Random</span>
-    </a><br>
-    <a href="/games/ducklife.html" class="img-link">
-    <img class="game-images" src="https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/dl1.webp" alt="eggshock">
-    <span class="img-hover-text">Duck Life</span>
-    </a><br>
-    <a href="/games/ducklife-2.html" class="img-link">
-    <img class="game-images" src="https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/dl2.webp" alt="eggshock">
-    <span class="img-hover-text">Duck Life 2</span>
-    </a><br>
-    <a href="/games/ducklife-3.html" class="img-link">
-    <img class="game-images" src="https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/dl3.webp" alt="eggshock">
-    <span class="img-hover-text">Duck Life 3</span>
-    </a><br>
-    <a href="/games/ducklife-4.html" class="img-link">
-    <img class="game-images" src="https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/dl4.webp" alt="eggshock">
-    <span class="img-hover-text">Duck Life 4</span>
-    </a><br>
-    <a href="/games/ducklife-5.html" class="img-link">
-    <img class="game-images" src="https://play-lh.googleusercontent.com/JQqSn7wuCj0SxBqpBThNI33qCR9gwY0str2TIAnu-m_xrVCgZk3IPxYK2S7zC9WG0ig" alt="eggshock">
-    <span class="img-hover-text">Duck Life 5</span>
-    </a><br>
-   <a href="/games/bloonstd5.html" class="img-link">
-    <img class="game-images" src="https://play-lh.googleusercontent.com/LLEUf9Qcd6N2L4nynBArv7wHyvPLiKBJtXjFEfgD4yS80ZJtQREVjIJE_HXFRDAJxQ" alt="eggshock">
-    <span class="img-hover-text">Bloons TD 5</span>
-    </a><br>
-   <a href="/games/dune.html" class="img-link">
-    <img class="game-images" src="https://cyberscore.me.uk/uploads/boxarts/29ece470dffb95f7d71a456cc7d09847ffcd135b99a903eb11e48f31737537e7" alt="eggshock">
-    <span class="img-hover-text">Dune</span>
-    </a><br>
-   <a href="/games/papas-taco-mia.html" class="img-link">
-    <img class="game-images" src="https://i.postimg.cc/C1pRSz2h/image.png" alt="eggshock">
-    <span class="img-hover-text">Papa's Taco Mia</span>
-    </a><br>
-    <a href="/games/papas-pizzeria.html" class="img-link">
-    <img class="game-images" src="https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/papapizza.webp" alt="eggshock">
-    <span class="img-hover-text">Papa's Pizzeria</span>
-    </a><br>
-    <a href="/games/retro-bowl.html" class="img-link">
-    <img class="game-images" src="https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/retro_bowl_icon.webp" alt="eggshock">
-    <span class="img-hover-text">Retro Bowl</span>
-    </a><br>
-    <a href="/games/bloxorz.html" class="img-link">
-    <img class="game-images" src="https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/bloxorz.webp" alt="eggshock">
-    <span class="img-hover-text">Bloxorz</span>
-    </a><br>
-    <a href="/games/crazycattle3d.html" class="img-link">
-    <img class="game-images" src="https://crazycattle3dgithub.io/data/image/crazy-cattle-3d-online.png" alt="eggshock">
-    <span class="img-hover-text">Crazy Cattle 3d</span>
-    </a><br>
-    <a href="/games/bloxd.io.html" class="img-link">
-    <img class="game-images" src="https://play-lh.googleusercontent.com/JueHGsqy5FIQBoDmR8_wkx2wkdmbTqca4sDRhv7XBmw6wwKQJbqBc2vSH8Nuqjoqng=w240-h480-rw" alt="eggshock">
-    <span class="img-hover-text">Bloxd.IO</span>
-    </a><br>
     <a href="/games/awesometanks.html" class="img-link">
-    <img class="game-images" src="https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/awesometanks1.webp" alt="eggshock">
+    <img class="game-images" src="https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/awesometanks1.webp" alt="Awesome Tanks">
     <span class="img-hover-text">Awesome Tanks</span>
     </a><br>
     <a href="/games/awesometanks2.html" class="img-link">
-    <img class="game-images" src="https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/awesome-tanks-2.webp" alt="eggshock">
+    <img class="game-images" src="https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/awesome-tanks-2.webp" alt="Awesome Tanks 2">
     <span class="img-hover-text">Awesome Tanks 2</span>
     </a><br>
-    <a href="/games/1v1lol.html" class="img-link">
-    <img class="game-images" src="https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/1v1.lol-old.webp" alt="eggshock">
-    <span class="img-hover-text">1v1.LOL</span>
+    <a href="/games/basket-random.html" class="img-link">
+    <img class="game-images" src="https://scout.wgimager.com/f_webp/q_90/https://static.wgplayground.com/43105ae03bf75070f5e80a76bb59ac6e/wgplayground/c8a520f67cc563041d2a75bd8223939e.jpg" alt="Basket Random">
+    <span class="img-hover-text">Basket Random</span>
     </a><br>
-    <a href="/games/eggy-car.html" class="img-link">
-    <img class="game-images" src="https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/eggy-car.webp" alt="eggshock">
-    <span class="img-hover-text">Eggy Car</span>
+    <a href="/games/basketball-legends.html" class="img-link">
+    <img class="game-images" src="https://img.poki-cdn.com/cdn-cgi/image/quality=78,width=314,height=314,fit=cover,f=auto/a1d3004c30bfd422125e43a558629ad4.png" alt="Basketball Legends">
+    <span class="img-hover-text">Basketball Legends</span>
+    </a><br>
+    <a href="/games/bike-obby.html" class="img-link">
+    <img class="game-images" src="https://play-lh.googleusercontent.com/YwxYsY3FW_zhGTZuYjT9MOpv48FKKl90uyM4eyqOjVCPLEbosk2NALJc64arXdPhjq7d" alt="Obby But You'Re On A Bike">
+    <span class="img-hover-text">Obby But You'Re On A Bike</span>
+    </a><br>
+    <a href="/games/bitlife.html" class="img-link">
+    <img class="game-images" src="https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/bitlife.webp" alt="BitLife">
+    <span class="img-hover-text">BitLife</span>
+    </a><br>
+    <a href="/games/bloxd.io.html" class="img-link">
+    <img class="game-images" src="https://play-lh.googleusercontent.com/JueHGsqy5FIQBoDmR8_wkx2wkdmbTqca4sDRhv7XBmw6wwKQJbqBc2vSH8Nuqjoqng=w240-h480-rw" alt="Bloxd.IO">
+    <span class="img-hover-text">Bloxd.IO</span>
+    </a><br>
+    <a href="/games/bloonstd5.html" class="img-link">
+    <img class="game-images" src="https://play-lh.googleusercontent.com/LLEUf9Qcd6N2L4nynBArv7wHyvPLiKBJtXjFEfgD4yS80ZJtQREVjIJE_HXFRDAJxQ" alt="Bloons TD 5">
+    <span class="img-hover-text">Bloons TD 5</span>
+    </a><br>
+    <a href="/games/blocky-puzzle.html" class="img-link">
+    <img class="game-images" src="https://play-lh.googleusercontent.com/mBpKOJBdmZLHFEfIMT0s27O-jX4MyAXqX-vhugHlTE0FKj188WmFCRElxY-inKX1tMA" alt="Blocky Puzzle">
+    <span class="img-hover-text">Blocky Puzzle</span>
+    </a><br>
+    <a href="/games/bloxorz.html" class="img-link">
+    <img class="game-images" src="https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/bloxorz.webp" alt="Bloxorz">
+    <span class="img-hover-text">Bloxorz</span>
+    </a><br>
+    <a href="/games/boxing-random.html" class="img-link">
+    <img class="game-images" src="https://scout.wgimager.com/f_webp/q_90/https://static.wgplayground.com/6855106681935877ef8e937426c3d083/wgplayground/76e061c19b18bbc9f83ac7070cf0940a.jpg" alt="Boxing Random">
+    <span class="img-hover-text">Boxing Random</span>
+    </a><br>
+    <a href="/games/club-penguin-legacy.html" class="img-link">
+    <img class="game-images" src="https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/clubpenguin.webp" alt="Club Penguin Legacy">
+    <span class="img-hover-text">Club Penguin Legacy</span>
+    </a><br>
+    <a href="/games/cookie-clicker.html" class="img-link">
+    <img class="game-images" src="https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/cookieclicker.webp" alt="Cookie Clicker">
+    <span class="img-hover-text">Cookie Clicker</span>
+    </a><br>
+    <a href="/games/crazycattle3d.html" class="img-link">
+    <img class="game-images" src="https://crazycattle3dgithub.io/data/image/crazy-cattle-3d-online.png" alt="Crazy Cattle 3d">
+    <span class="img-hover-text">Crazy Cattle 3d</span>
+    </a><br>
+    <a href="/games/deadshot.io.html" class="img-link">
+    <img class="game-images" src="https://cdn.now.gg/apps-content/com.nowgg.h5.pub501.app51613/icon/deadshot.png" alt="Deadshot.IO">
+    <span class="img-hover-text">Deadshot.IO</span>
+    </a><br>
+    <a href="/games/digital-museum.html" class="img-link">
+    <img class="game-images" src="https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/digital.webp " alt="Digital Museum">
+    <span class="img-hover-text">Digital Museum</span>
     </a><br>
     <a href="/games/drift-boss.html" class="img-link">
-    <img class="game-images" src="https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/driftboss.webp" alt="eggshock">
+    <img class="game-images" src="https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/driftboss.webp" alt="Drift Boss">
     <span class="img-hover-text">Drift Boss</span>
     </a><br>
-    <a href="/games/motox3m.html" class="img-link">
-    <img class="game-images" src="https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/motox3m.webp" alt="eggshock">
-    <span class="img-hover-text">Moto X3M</span>
+    <a href="/games/ducklife.html" class="img-link">
+    <img class="game-images" src="https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/dl1.webp" alt="Duck Life">
+    <span class="img-hover-text">Duck Life</span>
     </a><br>
-    <a href="/games/tiny-fishing.html" class="img-link">
-    <img class="game-images" src="https://i.postimg.cc/XJX7BvN5/image.png" alt="eggshock">
-    <span class="img-hover-text">Tiny Fishing</span>
+    <a href="/games/ducklife-2.html" class="img-link">
+    <img class="game-images" src="https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/dl2.webp" alt="Duck Life 2">
+    <span class="img-hover-text">Duck Life 2</span>
     </a><br>
-    <a href="/games/rooftop-snipers.html" class="img-link">
-    <img class="game-images" src="https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/rooftop.webp" alt="eggshock">
-    <span class="img-hover-text">Rooftop Snipers</span>
+    <a href="/games/ducklife-3.html" class="img-link">
+    <img class="game-images" src="https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/dl3.webp" alt="Duck Life 3">
+    <span class="img-hover-text">Duck Life 3</span>
     </a><br>
-    <a href="/games/smash-karts.html" class="img-link">
-    <img class="game-images" src="https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/smashkarts.webp" alt="eggshock">
-    <span class="img-hover-text">Smash Karts</span>
+    <a href="/games/ducklife-4.html" class="img-link">
+    <img class="game-images" src="https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/dl4.webp" alt="Duck Life 4">
+    <span class="img-hover-text">Duck Life 4</span>
+    </a><br>
+    <a href="/games/ducklife-5.html" class="img-link">
+    <img class="game-images" src="https://play-lh.googleusercontent.com/JQqSn7wuCj0SxBqpBThNI33qCR9gwY0str2TIAnu-m_xrVCgZk3IPxYK2S7zC9WG0ig" alt="Duck Life 5">
+    <span class="img-hover-text">Duck Life 5</span>
+    </a><br>
+    <a href="/games/dune.html" class="img-link">
+    <img class="game-images" src="https://cyberscore.me.uk/uploads/boxarts/29ece470dffb95f7d71a456cc7d09847ffcd135b99a903eb11e48f31737537e7" alt="Dune">
+    <span class="img-hover-text">Dune</span>
+    </a><br>
+    <a href="/games/eggshock.html" class="img-link">
+    <img class="game-images" src="https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/shell-shockers.webp" alt="Shell Shockers">
+    <span class="img-hover-text">Shell Shockers</span>
+    </a><br>
+    <a href="/games/eggy-car.html" class="img-link">
+    <img class="game-images" src="https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/eggy-car.webp" alt="Eggy Car">
+    <span class="img-hover-text">Eggy Car</span>
+    </a><br>
+    <a href="/games/flappy-bird.html" class="img-link">
+    <img class="game-images" src="https://upload.wikimedia.org/wikipedia/en/thumb/0/0a/Flappy_Bird_icon.png/250px-Flappy_Bird_icon.png" alt="Flappy Bird">
+    <span class="img-hover-text">Flappy Bird</span>
+    </a><br>
+    <a href="/games/geometry-dash.html" class="img-link">
+    <img class="game-images" src="https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/geometrydash.webp" alt="Geometry Dash">
+    <span class="img-hover-text">Geometry Dash</span>
     </a><br>
     <a href="/games/impossible-quiz.html" class="img-link">
-    <img class="game-images" src="https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/impossible.webp" alt="eggshock">
+    <img class="game-images" src="https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/impossible.webp" alt="The Impossible Quiz">
     <span class="img-hover-text">The Impossible Quiz</span>
     </a><br>
     <a href="/games/impossible-quiz-2.html" class="img-link">
-    <img class="game-images" src="https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/impossible2.webp" alt="eggshock">
+    <img class="game-images" src="https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/impossible2.webp" alt="The Impossible Quiz 2">
     <span class="img-hover-text">The Impossible Quiz 2</span>
     </a><br>
-    <a href="/games/thebindingofisaac.html" class="img-link">
-    <img class="game-images" src="https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/isaac.webp" alt="eggshock">
-    <span class="img-hover-text">The Binding Of Isaac</span>
+    <a href="/games/kawai-run-2.html" class="img-link">
+    <img class="game-images" src="https://i.ytimg.com/vi/xJCFnIS-5X0/hqdefault.jpg" alt="Kawai Run 2">
+    <span class="img-hover-text">Kawai Run 2</span>
     </a><br>
-    <a href="/games/rocket-soccer-derby.html" class="img-link">
-    <img class="game-images" src="https://upload.wikimedia.org/wikipedia/commons/e/e0/Rocket_League_coverart.jpg" alt="eggshock">
-    <span class="img-hover-text">Rocket Soccer Derby</span>
+    <a href="/games/krunker.io.html" class="img-link">
+    <img class="game-images" src="https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/krunker.io.webp" alt="Krunker.io">
+    <span class="img-hover-text">Krunker.io</span>
+    </a><br>
+    <a href="/games/learn2fly2.html" class="img-link">
+    <img class="game-images" src="https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/learntofly2.webp" alt="Learn 2 Fly 2">
+    <span class="img-hover-text">Learn 2 Fly 2</span>
+    </a><br>
+    <a href="/games/little-alchemy-2.html" class="img-link">
+    <img class="game-images" src="https://play-lh.googleusercontent.com/3Pr4gCB3uzsYyoFZZiDOuvq_7SeQPjUQnHiUrwug154RnTGJ_YAX5zvZfCH-4r2JKBOX" alt="Little Alchemy 2">
+    <span class="img-hover-text">Little Alchemy 2</span>
+    </a><br>
+    <a href="/games/lolbeans.io.html" class="img-link">
+    <img class="game-images" src="https://www.kidssearch.com/images/LOLBeans-io-Game.png" alt="Lolbeans.IO">
+    <span class="img-hover-text">Lolbeans.IO</span>
+    </a><br>
+    <a href="/games/madalin-stunt-cars-2.html" class="img-link">
+    <img class="game-images" src="https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/madalin.webp" alt="Madalin Stunt Cars 2">
+    <span class="img-hover-text">Madalin Stunt Cars 2</span>
+    </a><br>
+    <a href="/games/marble_skies.html" class="img-link">
+    <img class="game-images" src="https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/marble_skies.webp" alt="Marble Skies">
+    <span class="img-hover-text">Marble Skies</span>
+    </a><br>
+    <a href="/games/masked-special-forces.html" class="img-link">
+    <img class="game-images" src="https://unblocked-games.s3.amazonaws.com/media/posts/310/512-2.jpg" alt="Masked Special Forces">
+    <span class="img-hover-text">Masked Special Forces</span>
+    </a><br>
+    <a href="/games/math-duck.html" class="img-link">
+    <img class="game-images" src="https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/math-duck.webp" alt="Math Duck">
+    <span class="img-hover-text">Math Duck</span>
+    </a><br>
+    <a href="/games/meat-boy.html" class="img-link">
+    <img class="game-images" src="https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/meat.webp" alt="Super Meat Boy">
+    <span class="img-hover-text">Super Meat Boy</span>
+    </a><br>
+    <a href="/games/minecraft.html" class="img-link">
+    <img class="game-images" src="https://images.icon-icons.com/2699/PNG/512/minecraft_logo_icon_168974.png" alt="Minecraft">
+    <span class="img-hover-text">Minecraft</span>
+    </a><br>
+    <a href="/games/monkey-mart.html" class="img-link">
+    <img class="game-images" src="https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/monkey-mart.webp" alt="Monkey Mart">
+    <span class="img-hover-text">Monkey Mart</span>
+    </a><br>
+    <a href="/games/motox3m.html" class="img-link">
+    <img class="game-images" src="https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/motox3m.webp" alt="Moto X3M">
+    <span class="img-hover-text">Moto X3M</span>
+    </a><br>
+    <a href="/games/obby-but-youre-on-a-bike.html" class="img-link">
+    <img class="game-images" src="https://play-lh.googleusercontent.com/YwxYsY3FW_zhGTZuYjT9MOpv48FKKl90uyM4eyqOjVCPLEbosk2NALJc64arXdPhjq7d" alt="Obby But You'Re On A Bike">
+    <span class="img-hover-text">Obby But You'Re On A Bike</span>
+    </a><br>
+    <a href="/games/paper.io.html" class="img-link">
+    <img class="game-images" src="https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/paper.webp" alt="Paper.IO">
+    <span class="img-hover-text">Paper.IO</span>
+    </a><br>
+    <a href="/games/papas-pizzeria.html" class="img-link">
+    <img class="game-images" src="https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/papapizza.webp" alt="Papa's Pizzeria">
+    <span class="img-hover-text">Papa's Pizzeria</span>
+    </a><br>
+    <a href="/games/papas-taco-mia.html" class="img-link">
+    <img class="game-images" src="https://i.postimg.cc/C1pRSz2h/image.png" alt="Papa's Taco Mia">
+    <span class="img-hover-text">Papa's Taco Mia</span>
+    </a><br>
+    <a href="/games/retro-bowl-college.html" class="img-link">
+    <img class="game-images" src="https://img.poki-cdn.com/cdn-cgi/image/quality=78,width=314,height=314,fit=cover,f=auto/d98547374c4129bf441b754d495e41aa.png" alt="Retro Bowl College">
+    <span class="img-hover-text">Retro Bowl College</span>
+    </a><br>
+    <a href="/games/retro-bowl.html" class="img-link">
+    <img class="game-images" src="https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/retro_bowl_icon.webp" alt="Retro Bowl">
+    <span class="img-hover-text">Retro Bowl</span>
+    </a><br>
+    <a href="/games/rooftop-snipers.html" class="img-link">
+    <img class="game-images" src="https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/rooftop.webp" alt="Rooftop Snipers">
+    <span class="img-hover-text">Rooftop Snipers</span>
     </a><br>
     <a href="/games/run3.html" class="img-link">
-    <img class="game-images" src="https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/run3.webp" alt="eggshock">
+    <img class="game-images" src="https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/run3.webp" alt="Run 3">
     <span class="img-hover-text">Run 3</span>
     </a><br>
     <a href="/games/simply-up.html" class="img-link">
-    <img class="game-images" src="https://image.api.playstation.com/vulcan/ap/rnd/202408/0914/c3a0bb67aa00932264afd654ec0217658cd1d51e7c6f6b23.png" alt="eggshock">
+    <img class="game-images" src="https://image.api.playstation.com/vulcan/ap/rnd/202408/0914/c3a0bb67aa00932264afd654ec0217658cd1d51e7c6f6b23.png" alt="Simply Up">
     <span class="img-hover-text">Simply Up</span>
     </a><br>
-    <a href="/games/flappy-bird.html" class="img-link">
-    <img class="game-images" src="https://upload.wikimedia.org/wikipedia/en/thumb/0/0a/Flappy_Bird_icon.png/250px-Flappy_Bird_icon.png" alt="eggshock">
-    <span class="img-hover-text">Flappy Bird</span>
+    <a href="/games/smash-karts.html" class="img-link">
+    <img class="game-images" src="https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/smashkarts.webp" alt="Smash Karts">
+    <span class="img-hover-text">Smash Karts</span>
     </a><br>
-    <a href="/games/paper.io.html" class="img-link">
-    <img class="game-images" src="https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/paper.webp" alt="eggshock">
-    <span class="img-hover-text">Paper.IO</span>
+    <a href="/games/snow-rider-3d.html" class="img-link">
+    <img class="game-images" src="https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/snowrider3d.webp" alt="Snow Rider 3D">
+    <span class="img-hover-text">Snow Rider 3D</span>
     </a><br>
-    <a href="/games/geometry-dash.html" class="img-link">
-    <img class="game-images" src="https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/geometrydash.webp" alt="eggshock">
-    <span class="img-hover-text">Geometry Dash</span>
+    <a href="/games/spider-dude-parkour.html" class="img-link">
+    <img class="game-images" src="https://kbhgames.com/wp-content/uploads/2024/06/Spider-Dude-Parkour.png" alt="Spider Dude Parkour">
+    <span class="img-hover-text">Spider Dude Parkour</span>
+    </a><br>
+    <a href="/games/super-meat-boy.html" class="img-link">
+    <img class="game-images" src="https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/meat.webp" alt="Super Meat Boy">
+    <span class="img-hover-text">Super Meat Boy</span>
     </a><br>
     <a href="/games/tetris.html" class="img-link">
-    <img class="game-images" src="https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/tetris.webp" alt="eggshock">
+    <img class="game-images" src="https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/tetris.webp" alt="Tetris">
     <span class="img-hover-text">Tetris</span>
     </a><br>
-    <a href="/games/boxing-random.html" class="img-link">
-    <img class="game-images" src="https://scout.wgimager.com/f_webp/q_90/https://static.wgplayground.com/6855106681935877ef8e937426c3d083/wgplayground/76e061c19b18bbc9f83ac7070cf0940a.jpg" alt="eggshock">
-    <span class="img-hover-text">Boxing Random</span>
+    <a href="/games/tiny-fishing.html" class="img-link">
+    <img class="game-images" src="https://i.postimg.cc/XJX7BvN5/image.png" alt="Tiny Fishing">
+    <span class="img-hover-text">Tiny Fishing</span>
+    </a><br>
+    <a href="/games/thebindingofisaac.html" class="img-link">
+    <img class="game-images" src="https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/isaac.webp" alt="The Binding Of Isaac">
+    <span class="img-hover-text">The Binding Of Isaac</span>
+    </a><br>
+    <a href="/games/volley-random.html" class="img-link">
+    <img class="game-images" src="https://scout.wgimager.com/f_webp/q_90/https://static.wgplayground.com/759df58c48c52d9ec5692531607df6d6/wgplayground/ef27e9f2407a0e086cd29a604e83a66f.jpg" alt="Volley Random">
+    <span class="img-hover-text">Volley Random</span>
     </a><br>
 </div>
     </div>
     </body>
     <script src="script.js"></script>
+    <script>
+      // --- Search Bar Logic (redirects to results page) ---
+      document.getElementById('searchForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const val = document.getElementById('gameSearchInput').value.trim();
+        if (val) {
+          window.location.href = `results.html?q=${encodeURIComponent(val)}`;
+        }
+      });
+    </script>
 </html>

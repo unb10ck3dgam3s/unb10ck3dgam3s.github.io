@@ -27,11 +27,3 @@ function showSearchResults() {
     });
     results.style.display = 'block';
 }
-
-document.addEventListener('click', function(e) {
-    const results = document.getElementById('searchResults');
-    if (!results) return;
-    if (!results.contains(e.target) && e.target.id !== 'gameSearchInput') {
-        results.style.display = 'none';
-    }
-});

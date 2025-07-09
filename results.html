@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404playground</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Google Fonts for arcade look -->
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <nav class="navbar">
+        <a href="/" class="navbar-title">unb10ck3dgam3s</a>
+        <form class="navbar-search" id="searchForm" onsubmit="return false;">
+            <input type="text" id="gameSearchInput" placeholder="Search games..." aria-label="Search games" autocomplete="off" oninput="showSearchResults()">
+            <button type="submit">🔍</button>
+            <ul id="searchResults" class="search-results-list"></ul>
+        </form>
+    </nav>
+  <div class="main-content-wrapper">
+    <h1 class="results-header">Search Results</h1>
+    <div id="resultsContainer" class="results-list"></div>
+    <div id="noResults" class="no-results" style="display:none;">No games found matching your search.</div>
+  </div>
+  <script src="script.js"></script>
+  <script>
+    // --- Game Data (should match your main page) ---
+    const games = [
+        { title: "2048", img: "https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/2048.webp", url: "/games/2048.html" },
+        { title: "1v1.LOL", img: "https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/1v1.lol-old.webp", url: "/games/1v1lol.html" },
+        { title: "Angry Birds Slingshot Frenzy", img: "https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/birdangry.webp", url: "/games/angry-birds-slingshot-frenzy.html" },
+        { title: "Awesome Tanks", img: "https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/awesometanks1.webp", url: "/games/awesometanks.html" },
+        { title: "Awesome Tanks 2", img: "https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/awesome-tanks-2.webp", url: "/games/awesometanks2.html" },
+        { title: "Basket Random", img: "https://scout.wgimager.com/f_webp/q_90/https://static.wgplayground.com/43105ae03bf75070f5e80a76bb59ac6e/wgplayground/c8a520f67cc563041d2a75bd8223939e.jpg", url: "/games/basket-random.html" },
+        { title: "Basketball Legends", img: "https://img.poki-cdn.com/cdn-cgi/image/quality=78,width=314,height=314,fit=cover,f=auto/a1d3004c30bfd422125e43a558629ad4.png", url: "/games/basketball-legends.html" },
+        { title: "BitLife", img: "https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/bitlife.webp", url: "/games/bitlife.html" },
+        { title: "Bike Obby", img: "https://play-lh.googleusercontent.com/YwxYsY3FW_zhGTZuYjT9MOpv48FKKl90uyM4eyqOjVCPLEbosk2NALJc64arXdPhjq7d", url: "/games/bike-obby.html" },
+        { title: "Bloxd.IO", img: "https://play-lh.googleusercontent.com/JueHGsqy5FIQBoDmR8_wkx2wkdmbTqca4sDRhv7XBmw6wwKQJbqBc2vSH8Nuqjoqng=w240-h480-rw", url: "/games/bloxd.io.html" },
+        { title: "Bloons TD 5", img: "https://play-lh.googleusercontent.com/LLEUf9Qcd6N2L4nynBArv7wHyvPLiKBJtXjFEfgD4yS80ZJtQREVjIJE_HXFRDAJxQ", url: "/games/bloonstd5.html" },
+        { title: "Blocky Puzzle", img: "https://play-lh.googleusercontent.com/mBpKOJBdmZLHFEfIMT0s27O-jX4MyAXqX-vhugHlTE0FKj188WmFCRElxY-inKX1tMA", url: "/games/blocky-puzzle.html" },
+        { title: "Bloxorz", img: "https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/bloxorz.webp", url: "/games/bloxorz.html" },
+        { title: "Boxing Random", img: "https://scout.wgimager.com/f_webp/q_90/https://static.wgplayground.com/6855106681935877ef8e937426c3d083/wgplayground/76e061c19b18bbc9f83ac7070cf0940a.jpg", url: "/games/boxing-random.html" },
+        { title: "Club Penguin Legacy", img: "https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/clubpenguin.webp", url: "/games/club-penguin-legacy.html" },
+        { title: "Cookie Clicker", img: "https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/cookieclicker.webp", url: "/games/cookie-clicker.html" },
+        { title: "Crazy Cattle 3d", img: "https://crazycattle3dgithub.io/data/image/crazy-cattle-3d-online.png", url: "/games/crazycattle3d.html" },
+        { title: "Deadshot.IO", img: "https://cdn.now.gg/apps-content/com.nowgg.h5.pub501.app51613/icon/deadshot.png", url: "/games/deadshot.io.html" },
+        { title: "Digital Museum", img: "https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/digital.webp", url: "/games/digital-museum.html" },
+        { title: "Drift Boss", img: "https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/driftboss.webp", url: "/games/drift-boss.html" },
+        { title: "Duck Life", img: "https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/dl1.webp", url: "/games/ducklife.html" },
+        { title: "Duck Life 2", img: "https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/dl2.webp", url: "/games/ducklife-2.html" },
+        { title: "Duck Life 3", img: "https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/dl3.webp", url: "/games/ducklife-3.html" },
+        { title: "Duck Life 4", img: "https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/dl4.webp", url: "/games/ducklife-4.html" },
+        { title: "Duck Life 5", img: "https://play-lh.googleusercontent.com/JQqSn7wuCj0SxBqpBThNI33qCR9gwY0str2TIAnu-m_xrVCgZk3IPxYK2S7zC9WG0ig", url: "/games/ducklife-5.html" },
+        { title: "Dune", img: "https://cyberscore.me.uk/uploads/boxarts/29ece470dffb95f7d71a456cc7d09847ffcd135b99a903eb11e48f31737537e7", url: "/games/dune.html" },
+        { title: "Eggy Car", img: "https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/eggy-car.webp", url: "/games/eggy-car.html" },
+        { title: "Flappy Bird", img: "https://upload.wikimedia.org/wikipedia/en/thumb/0/0a/Flappy_Bird_icon.png/250px-Flappy_Bird_icon.png", url: "/games/flappy-bird.html" },
+        { title: "Geometry Dash", img: "https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/geometrydash.webp", url: "/games/geometry-dash.html" },
+        { title: "The Impossible Quiz", img: "https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/impossible.webp", url: "/games/impossible-quiz.html" },
+        { title: "The Impossible Quiz 2", img: "https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/impossible2.webp", url: "/games/impossible-quiz-2.html" },
+        { title: "Kawai Run 2", img: "https://i.ytimg.com/vi/xJCFnIS-5X0/hqdefault.jpg", url: "/games/kawai-run-2.html" },
+        { title: "Krunker.io", img: "https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/krunker.io.webp", url: "/games/krunker.io.html" },
+        { title: "Learn 2 Fly 2", img: "https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/learntofly2.webp", url: "/games/learn2fly2.html" },
+        { title: "Little Alchemy 2", img: "https://play-lh.googleusercontent.com/3Pr4gCB3uzsYyoFZZiDOuvq_7SeQPjUQnHiUrwug154RnTGJ_YAX5zvZfCH-4r2JKBOX", url: "/games/little-alchemy-2.html" },
+        { title: "Lolbeans.IO", img: "https://www.kidssearch.com/images/LOLBeans-io-Game.png", url: "/games/lolbeans.io.html" },
+        { title: "Madalin Stunt Cars 2", img: "https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/madalin.webp", url: "/games/madalin-stunt-cars-2.html" },
+        { title: "Marble Skies", img: "https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/marble_skies.webp", url: "/games/marble-skies.html" },
+        { title: "Masked Special Forces", img: "https://unblocked-games.s3.amazonaws.com/media/posts/310/512-2.jpg", url: "/games/masked-special-forces.html" },
+        { title: "Math Duck", img: "https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/math-duck.webp", url: "/games/math-duck.html" },
+        { title: "Super Meat Boy", img: "https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/meat.webp", url: "/games/super-meat-boy.html" },
+        { title: "Minecraft", img: "https://images.icon-icons.com/2699/PNG/512/minecraft_logo_icon_168974.png", url: "/games/minecraft.html" },
+        { title: "Monkey Mart", img: "https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/monkey-mart.webp", url: "/games/monkey-mart.html" },
+        { title: "Moto X3M", img: "https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/motox3m.webp", url: "/games/motox3m.html" },
+        { title: "Obby But You'Re On A Bike", img: "https://play-lh.googleusercontent.com/YwxYsY3FW_zhGTZuYjT9MOpv48FKKl90uyM4eyqOjVCPLEbosk2NALJc64arXdPhjq7d", url: "/games/obby-but-youre-on-a-bike.html" },
+        { title: "Papa's Pizzeria", img: "https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/papapizza.webp", url: "/games/papas-pizzeria.html" },
+        { title: "Papa's Taco Mia", img: "https://i.postimg.cc/C1pRSz2h/image.png", url: "/games/papas-taco-mia.html" },
+        { title: "Paper.IO", img: "https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/paper.webp", url: "/games/paper.io.html" },
+        { title: "Retro Bowl", img: "https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/retro_bowl_icon.webp", url: "/games/retro-bowl.html" },
+        { title: "Retro Bowl College", img: "https://img.poki-cdn.com/cdn-cgi/image/quality=78,width=314,height=314,fit=cover,f=auto/d98547374c4129bf441b754d495e41aa.png", url: "/games/retro-bowl-college.html" },
+        { title: "Rooftop Snipers", img: "https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/rooftop.webp", url: "/games/rooftop-snipers.html" },
+        { title: "Run 3", img: "https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/run3.webp", url: "/games/run3.html" },
+        { title: "Shell Shockers", img: "https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/shell-shockers.webp", url: "/games/eggshock.html" },
+        { title: "Simply Up", img: "https://image.api.playstation.com/vulcan/ap/rnd/202408/0914/c3a0bb67aa00932264afd654ec0217658cd1d51e7c6f6b23.png", url: "/games/simply-up.html" },
+        { title: "Smash Karts", img: "https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/smashkarts.webp", url: "/games/smash-karts.html" },
+        { title: "Snow Rider 3D", img: "https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/snowrider3d.webp", url: "/games/snow-rider-3d.html" },
+        { title: "Spider Dude Parkour", img: "https://kbhgames.com/wp-content/uploads/2024/06/Spider-Dude-Parkour.png", url: "/games/spider-dude-parkour.html" },
+        { title: "Tetris", img: "https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/tetris.webp", url: "/games/tetris.html" },
+        { title: "Tiny Fishing", img: "https://i.postimg.cc/XJX7BvN5/image.png", url: "/games/tiny-fishing.html" },
+        { title: "The Binding Of Isaac", img: "https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/isaac.webp", url: "/games/thebindingofisaac.html" },
+        { title: "Volley Random", img: "https://scout.wgimager.com/f_webp/q_90/https://static.wgplayground.com/759df58c48c52d9ec5692531607df6d6/wgplayground/ef27e9f2407a0e086cd29a604e83a66f.jpg", url: "/games/volley-random.html" }
+    ];
+
+    // --- Get Query from URL ---
+    function getQuery() {
+      const params = new URLSearchParams(window.location.search);
+      return params.get('q') || '';
+    }
+
+    // --- Render Results ---
+    function renderResults(query) {
+      const resultsContainer = document.getElementById('resultsContainer');
+      const noResults = document.getElementById('noResults');
+      resultsContainer.innerHTML = '';
+      if (!query) {
+        noResults.style.display = 'block';
+        return;
+      }
+      const q = query.trim().toLowerCase();
+      const matches = games.filter(g => g.title.toLowerCase().includes(q));
+      if (matches.length === 0) {
+        noResults.style.display = 'block';
+        return;
+      }
+      noResults.style.display = 'none';
+      matches.forEach(game => {
+        const a = document.createElement('a');
+        a.href = game.url;
+        a.className = 'img-link';
+        a.innerHTML = `
+          <img src="${game.img}" class="game-images" alt="${game.title}">
+          <div class="img-hover-text">Play ${game.title}</div>
+        `;
+        resultsContainer.appendChild(a);
+      });
+    }
+
+    // --- On Load: Show Results ---
+    const query = getQuery();
+    // Fix: set correct input id for universal search bar
+    const input = document.getElementById('gameSearchInput') || document.getElementById('searchInput');
+    if (input) input.value = query;
+    renderResults(query);
+
+    // --- Search Bar Logic (redirects to results page) ---
+    document.getElementById('searchForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const val = (document.getElementById('gameSearchInput') || document.getElementById('searchInput')).value.trim();
+      if (val) {
+        window.location.href = `results.html?q=${encodeURIComponent(val)}`;
+      }
+    });
+  </script>
+</body>
+</html>

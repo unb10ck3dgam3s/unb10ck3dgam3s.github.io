@@ -1,4 +1,4 @@
-    // Only run this if on a game page (not index)
+// Only run this if on a game page (not index)
     if (window.location.pathname.indexOf('index.html') === -1) {
         // Fetch the index.html and extract games for search
         fetch('../index.html')
@@ -57,3 +57,14 @@
                 iframe.msRequestFullscreen();
             }
         }
+
+        
+      // --- Search Bar Logic (redirects to results page) ---
+      document.getElementById('searchForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const val = document.getElementById('gameSearchInput').value.trim();
+        if (val) {
+            // Always use absolute path for results page
+            window.location.href = `/results.html?q=${encodeURIComponent(val)}`;
+        }
+      });

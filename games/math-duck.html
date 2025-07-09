@@ -7,116 +7,11 @@
     <link rel="stylesheet" href="../style.css">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1575608125795498"
      crossorigin="anonymous"></script>
-    <style>
-        body {
-            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
-            color: #5a2d0c;
-        }
-        h2 {
-            color: #b85c38;
-            text-shadow: 1px 1px 8px #fff3e0;
-        }
-        .fullscreen-btn {
-            display: block;
-            position: static;
-            margin: 24px auto 0 auto;
-            background: #ff7e5f;
-            color: #fff;
-            border: none;
-            border-radius: 8px;
-            padding: 0.5rem 1.2rem;
-            font-size: 2rem;
-            cursor: pointer;
-            box-shadow: 0 2px 8px rgba(255, 126, 95, 0.2);
-            transition: background 0.2s;
-        }
-        .fullscreen-btn:hover {
-            background: #feb47b;
-            font: 1rem;
-        }
-        .game-center-container {
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .game-center-container iframe {
-            background: #fff3e0;
-            border-radius: 14px;
-            box-shadow: 0 4px 24px rgba(255, 126, 95, 0.15);
-            border: 2px solid #fcb69f;
-            width: 80vw;
-            max-width: 900px;
-            height: 70vh;
-        }
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 2rem;
-            background-color: #fff;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            position: relative;
-            z-index: 1000;
-        }
-        .navbar-title {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: #333;
-            text-decoration: none;
-        }
-        .navbar-search {
-            display: flex;
-            align-items: center;
-            position: relative;
-        }
-        .navbar-search input {
-            padding: 0.5rem 2rem 0.5rem 1rem;
-            border: 2px solid #fcb69f;
-            border-radius: 4px;
-            font-size: 1rem;
-            outline: none;
-            transition: border-color 0.3s;
-        }
-        .navbar-search button {
-            position: absolute;
-            right: 0.5rem;
-            background: transparent;
-            border: none;
-            cursor: pointer;
-            font-size: 1.2rem;
-            color: #fcb69f;
-        }
-        .navbar-search input:focus {
-            border-color: #ff7e5f;
-        }
-        .search-results-list {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            right: 0;
-            background: #fff;
-            border: 1px solid #fcb69f;
-            border-top: none;
-            border-radius: 0 0 4px 4px;
-            max-height: 300px;
-            overflow-y: auto;
-            z-index: 1000;
-        }
-        .search-results-list li {
-            padding: 0.8rem 1rem;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-        .search-results-list li:hover {
-            background: #fcb69f;
-        }
-    </style>
 </head>
 <body>
     <nav class="navbar">
         <a href="/" class="navbar-title">unb10ck3dgam3s</a>
-        <form class="navbar-search" onsubmit="return false;">
+        <form class="navbar-search" id="searchForm" onsubmit="return false;">
             <input type="text" id="gameSearchInput" placeholder="Search games..." aria-label="Search games" autocomplete="off" oninput="showSearchResults()">
             <button type="submit">🔍</button>
             <ul id="searchResults" class="search-results-list"></ul>
