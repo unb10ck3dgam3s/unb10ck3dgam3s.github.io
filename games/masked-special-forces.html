@@ -47,12 +47,75 @@
             max-width: 900px;
             height: 70vh;
         }
+        nav.navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid #fcb69f;
+        }
+        .navbar-title {
+            font-size: 1.8rem;
+            color: #5a2d0c;
+            text-decoration: none;
+        }
+        .navbar-search {
+            position: relative;
+        }
+        .navbar-search input {
+            padding: 0.5rem 2rem 0.5rem 1rem;
+            border: 2px solid #fcb69f;
+            border-radius: 4px;
+            font-size: 1rem;
+            outline: none;
+            width: 300px;
+        }
+        .navbar-search button {
+            position: absolute;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            background: transparent;
+            border: none;
+            color: #5a2d0c;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+        .search-results-list {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: #fff;
+            border: 2px solid #fcb69f;
+            border-radius: 4px;
+            max-height: 300px;
+            overflow-y: auto;
+            z-index: 1000;
+        }
+        .search-results-list li {
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+        }
+        .search-results-list li:hover {
+            background: #fcb69f;
+        }
     </style>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1575608125795498"
      crossorigin="anonymous"></script>
 </head>
 <body>
-    <h2>Retro Bowl College</h2>
+    <nav class="navbar">
+        <a href="/" class="navbar-title">unb10ck3dgam3s</a>
+        <form class="navbar-search" onsubmit="return false;">
+            <input type="text" id="gameSearchInput" placeholder="Search games..." aria-label="Search games" autocomplete="off" oninput="showSearchResults()">
+            <button type="submit">🔍</button>
+            <ul id="searchResults" class="search-results-list"></ul>
+        </form>
+    </nav>
+    <h2>Masked Special Forces</h2>
     <div class="game-center-container">
         <iframe class="gameloc" id="gameFrame" allowfullscreen="" allow="autoplay; fullscreen; camera; focus-without-user-activation *; monetization; gamepad;
            keyboard-map *; xr-spatial-tracking; clipboard-write" name="gameFrame" scrolling="no" sandbox="allow-forms allow-modals allow-orientation-lock allow-pointer-lock
@@ -60,6 +123,7 @@
           allow-downloads" src="https://maddox.page/basic-ruffle-player/html/masked_special_forces/index.html" title="Game"></iframe>
         <button class="fullscreen-btn" onclick="fullscreenIframe()">Fullscreen</button>
     </div>
+    <script src="/games/script-games.js"></script>
     <script>
         function fullscreenIframe() {
             const iframe = document.getElementById('gameFrame');
