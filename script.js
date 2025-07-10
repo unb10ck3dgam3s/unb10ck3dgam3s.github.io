@@ -27,3 +27,19 @@ function showSearchResults() {
     });
     results.style.display = 'block';
 }
+
+// --- Universal Game Progress Save/Load ---
+// Usage: saveProgress({level: 2, score: 100});
+//        const progress = loadProgress();
+(function() {
+  if (window.location.pathname.includes('/games/')) {
+    const GAME_ID = window.location.pathname.split('/').pop().replace('.html', '');
+    window.saveProgress = function(progress) {
+      localStorage.setItem('progress-' + GAME_ID, JSON.stringify(progress));
+    };
+    window.loadProgress = function() {
+      const data = localStorage.getItem('progress-' + GAME_ID);
+      return data ? JSON.parse(data) : null;
+    };
+  }
+})();

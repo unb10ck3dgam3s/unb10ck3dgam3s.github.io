@@ -5,6 +5,7 @@ body {
   font-family: 'Segoe UI', Arial, sans-serif;
   margin: 0;
   padding: 0;
+  text-align:center;
 }
 
 .navbar {
@@ -76,6 +77,27 @@ button[type="submit"]:hover {
   display: none;
 }
 
+/* Custom scrollbar for search dropdown */
+.search-results-list::-webkit-scrollbar {
+  width: 8px;
+  background: #23242a;
+}
+.search-results-list::-webkit-scrollbar-thumb {
+  background: #4e8cff;
+  border-radius: 6px;
+}
+.search-results-list::-webkit-scrollbar-thumb:hover {
+  background: #2563eb;
+}
+.search-results-list::-webkit-scrollbar-corner {
+  background: #23242a;
+}
+
+.search-results-list {
+  scrollbar-width: thin;
+  scrollbar-color: #4e8cff #23242a;
+}
+
 .search-result-item a {
   display: flex;
   align-items: center;
@@ -98,7 +120,7 @@ button[type="submit"]:hover {
 }
 
 main, .main-content-wrapper {
-  max-width: 1000px;
+  max-width: 1100px;
   margin: 2em auto;
   padding: 1.5em;
   background: #23242a;
