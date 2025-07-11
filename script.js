@@ -43,3 +43,36 @@ function showSearchResults() {
     };
   }
 })();
+
+// --- Fuzzy Search Helpers (Universal) ---
+window.fuzzySearch = {
+  levenshtein: function(a, b) {
+    const matrix = Array.from({ length: a.length + 1 }, () => []);
+    for (let i = 0; i <= a.length; i++) matrix[i][0] = i;
+    for (let j = 0; j <= b.length; j++) matrix[0][j] = j;
+    for (let i = 1; i <= a.length; i++) {
+      for (let j = 1; j <= b.length; j++) {
+        matrix[i][j] = a[i - 1] === b[j - 1]
+          ? matrix[i - 1][j - 1]
+          : Math.min(
+              matrix[i - 1][j - 1] + 1,
+              matrix[i][j - 1] + 1,
+              matrix[i - 1][j] + 1
+            );
+      }
+    }
+    return matrix[a.length][b.length];
+  },
+  scoredFuzzyFilter: function(games, query) {
+    const q = query.trim().toLowerCase();
+    return games.map(g => {
+      const title = g.title.toLowerCase();
+      if (title === q) return { g, score: 0 };
+      if (title.includes(q)) return { g, score: 1 };
+      const dist = window.fuzzySearch.levenshtein(title, q);
+      if (dist <= 4) return { g, score: 2 + dist/10 };
+      return { g, score: 99 };
+    }).filter(x => x.score < 99)
+      .sort((a, b) => a.score - b.score || a.g.title.localeCompare(b.g.title));
+  }
+};
