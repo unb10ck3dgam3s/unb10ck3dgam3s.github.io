@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ArcadeZone – Play Free Games Online</title>
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;600;800;900&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0d0f1a;
+    --surface: #161927;
+    --surface2: #1e2235;
+    --border: #2a2f4a;
+    --accent: #ff3e6c;
+    --accent2: #00e5ff;
+    --accent3: #ffe600;
+    --text: #e8eaf6;
+    --muted: #6b7194;
+    --card-radius: 14px;
+    --nav-h: 64px;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ─── TOP NAV ─────────────────────────────── */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    height: var(--nav-h);
+    background: rgba(13,15,26,.92);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center;
+    padding: 0 24px; gap: 20px;
+  }
+  .logo {
+    font-family: 'Exo 2', sans-serif;
+    font-weight: 900; font-size: 1.5rem;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    letter-spacing: -1px; white-space: nowrap;
+  }
+  .logo span { color: var(--accent3); -webkit-text-fill-color: var(--accent3); }
+  .nav-search {
+    flex: 1; max-width: 420px;
+    position: relative;
+  }
+  .nav-search input {
+    width: 100%; padding: 9px 16px 9px 40px;
+    background: var(--surface2); border: 1px solid var(--border);
+    border-radius: 50px; color: var(--text); font-size: .9rem;
+    outline: none; transition: border .2s;
+  }
+  .nav-search input:focus { border-color: var(--accent2); }
+  .nav-search svg { position: absolute; left: 13px; top: 50%; transform: translateY(-50%); opacity: .5; }
+  .nav-right { margin-left: auto; display: flex; gap: 10px; }
+  .nav-btn {
+    padding: 8px 18px; border-radius: 50px; font-weight: 600; font-size: .85rem;
+    cursor: pointer; border: none; transition: all .2s;
+  }
+  .nav-btn.outline { background: transparent; border: 1.5px solid var(--border); color: var(--text); }
+  .nav-btn.outline:hover { border-color: var(--accent2); color: var(--accent2); }
+  .nav-btn.fill { background: var(--accent); color: #fff; }
+  .nav-btn.fill:hover { background: #ff5580; }
+
+  /* ─── LAYOUT ──────────────────────────────── */
+  .layout {
+    display: flex;
+    min-height: calc(100vh - var(--nav-h));
+  }
+
+  /* ─── SIDEBAR ─────────────────────────────── */
+  aside {
+    width: 220px; flex-shrink: 0;
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+    padding: 20px 0;
+    position: sticky; top: var(--nav-h);
+    height: calc(100vh - var(--nav-h));
+    overflow-y: auto;
+  }
+  .sidebar-section { margin-bottom: 8px; }
+  .sidebar-label {
+    font-size: .7rem; font-weight: 700; letter-spacing: 1.5px;
+    text-transform: uppercase; color: var(--muted);
+    padding: 8px 20px 4px;
+  }
+  .sidebar-item {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 20px; cursor: pointer; font-size: .9rem;
+    border-left: 3px solid transparent;
+    transition: all .15s; color: var(--text); text-decoration: none;
+  }
+  .sidebar-item:hover { background: var(--surface2); color: var(--accent2); }
+  .sidebar-item.active {
+    border-left-color: var(--accent);
+    background: rgba(255,62,108,.07);
+    color: var(--accent);
+    font-weight: 600;
+  }
+  .sidebar-icon { font-size: 1.1rem; }
+
+  /* ─── AD SIDEBAR ──────────────────────────── */
+  .ad-sidebar {
+    width: 180px; flex-shrink: 0;
+    padding: 20px 12px;
+    display: flex; flex-direction: column; gap: 16px;
+  }
+  @media (max-width: 1100px) { .ad-sidebar { display: none; } }
+
+  /* ─── MAIN CONTENT ────────────────────────── */
+  main {
+    flex: 1; padding: 28px 24px;
+    min-width: 0;
+    display: flex; flex-direction: column; gap: 36px;
+  }
+
+  /* ─── AD SLOTS ────────────────────────────── */
+  .ad-slot {
+    background: var(--surface2);
+    border: 2px dashed var(--border);
+    border-radius: 10px;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    color: var(--muted); font-size: .75rem;
+    text-align: center; gap: 4px;
+    overflow: hidden;
+    position: relative;
+  }
+  .ad-slot::before {
+    content: 'AD';
+    font-size: .6rem; font-weight: 800; letter-spacing: 2px;
+    background: var(--border); color: var(--muted);
+    padding: 2px 8px; border-radius: 3px; margin-bottom: 4px;
+  }
+  .ad-slot-leaderboard { width: 100%; height: 90px; }   /* 728×90 leaderboard */
+  .ad-slot-banner      { width: 100%; height: 60px; }   /* 320×50  mobile banner */
+  .ad-slot-rect        { width: 100%; height: 250px; }  /* 300×250 rectangle */
+  .ad-slot-skyscraper  { width: 160px; height: 600px; } /* 160×600 sidebar */
+
+  /* ─── HERO BANNER ─────────────────────────── */
+  .hero {
+    background: linear-gradient(135deg, #1a0a2e 0%, #0d1f3c 60%, #001a22 100%);
+    border-radius: 18px; padding: 36px 40px;
+    position: relative; overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(circle at 70% 50%, rgba(0,229,255,.08) 0%, transparent 60%),
+                radial-gradient(circle at 20% 80%, rgba(255,62,108,.1) 0%, transparent 50%);
+  }
+  .hero-tag {
+    font-size: .75rem; font-weight: 700; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--accent);
+    margin-bottom: 10px;
+  }
+  .hero h1 {
+    font-family: 'Exo 2', sans-serif;
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    font-weight: 900; line-height: 1.1;
+    margin-bottom: 12px;
+  }
+  .hero h1 em { font-style: normal; color: var(--accent2); }
+  .hero p { color: var(--muted); max-width: 420px; line-height: 1.6; margin-bottom: 20px; }
+  .hero-btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--accent); color: #fff;
+    padding: 12px 28px; border-radius: 50px;
+    font-weight: 700; font-size: .95rem;
+    text-decoration: none; cursor: pointer; border: none;
+    transition: transform .2s, box-shadow .2s;
+    box-shadow: 0 8px 24px rgba(255,62,108,.3);
+  }
+  .hero-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(255,62,108,.4); }
+  .hero-float {
+    position: absolute; right: 40px; top: 50%; transform: translateY(-50%);
+    font-size: 6rem; opacity: .12; pointer-events: none;
+  }
+
+  /* ─── SECTION HEADER ──────────────────────── */
+  .section-hdr {
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 18px;
+  }
+  .section-hdr h2 {
+    font-family: 'Exo 2', sans-serif;
+    font-size: 1.25rem; font-weight: 800;
+  }
+  .section-hdr .pill {
+    background: var(--surface2); color: var(--muted);
+    padding: 3px 10px; border-radius: 50px; font-size: .75rem;
+  }
+  .section-hdr a {
+    margin-left: auto; font-size: .85rem; color: var(--accent2);
+    text-decoration: none; font-weight: 500;
+  }
+  .section-hdr a:hover { text-decoration: underline; }
+
+  /* ─── GAME GRID ───────────────────────────── */
+  .game-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 16px;
+  }
+  .game-card {
+    position: relative; border-radius: var(--card-radius);
+    overflow: hidden; cursor: pointer;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    aspect-ratio: 1 / 1;
+    transition: transform .2s, box-shadow .2s;
+    group: true;
+  }
+  .game-card:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 12px 32px rgba(0,0,0,.5);
+    border-color: var(--accent2);
+    z-index: 5;
+  }
+  .game-thumb {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: filter .3s;
+  }
+  .game-card:hover .game-thumb { filter: brightness(1.1); }
+
+  /* placeholder thumb when no image */
+  .game-thumb-placeholder {
+    width: 100%; height: 100%;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 8px; color: var(--muted);
+    font-size: 2.5rem;
+    background: linear-gradient(135deg, var(--surface2), var(--surface));
+  }
+
+  /* hover overlay with name */
+  .game-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,.85) 0%, rgba(0,0,0,.2) 50%, transparent 100%);
+    display: flex; flex-direction: column;
+    justify-content: flex-end; padding: 12px;
+    opacity: 0; transition: opacity .2s;
+  }
+  .game-card:hover .game-overlay { opacity: 1; }
+  .game-name {
+    font-family: 'Exo 2', sans-serif;
+    font-size: .85rem; font-weight: 700;
+    color: #fff; line-height: 1.2;
+  }
+  .game-category {
+    font-size: .7rem; color: var(--accent2);
+    margin-top: 2px; text-transform: uppercase; letter-spacing: .5px;
+  }
+  .play-chip {
+    display: inline-flex; align-items: center; gap: 4px;
+    background: var(--accent); color: #fff;
+    font-size: .7rem; font-weight: 700;
+    padding: 4px 10px; border-radius: 50px;
+    margin-top: 6px; width: fit-content;
+  }
+
+  /* ─── GAME MODAL (iframe player) ──────────── */
+  #modal-bg {
+    display: none; position: fixed; inset: 0; z-index: 999;
+    background: rgba(0,0,0,.85); backdrop-filter: blur(8px);
+    align-items: center; justify-content: center;
+  }
+  #modal-bg.open { display: flex; }
+  #modal-box {
+    width: min(960px, 96vw);
+    background: var(--surface);
+    border-radius: 18px; overflow: hidden;
+    border: 1px solid var(--border);
+    display: flex; flex-direction: column;
+    max-height: 90vh;
+  }
+  .modal-hdr {
+    display: flex; align-items: center; gap: 12px;
+    padding: 14px 18px; border-bottom: 1px solid var(--border);
+    background: var(--surface2);
+  }
+  .modal-hdr .modal-title {
+    font-family: 'Exo 2', sans-serif;
+    font-weight: 800; font-size: 1.1rem; flex: 1;
+  }
+  .modal-hdr button {
+    background: transparent; border: none; color: var(--muted);
+    cursor: pointer; font-size: 1.3rem; padding: 4px 8px;
+    border-radius: 8px; transition: color .15s;
+  }
+  .modal-hdr button:hover { color: var(--text); }
+  #modal-iframe {
+    width: 100%; border: none;
+    flex: 1; min-height: 500px;
+  }
+  /* ad strip in modal */
+  .modal-ad { height: 60px; display: flex; align-items: center; justify-content: center; }
+
+  /* ─── FOOTER ──────────────────────────────── */
+  footer {
+    background: var(--surface); border-top: 1px solid var(--border);
+    padding: 32px 40px; text-align: center; color: var(--muted); font-size: .85rem;
+  }
+
+  /* ─── SCROLLBAR ───────────────────────────── */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════
+     ★  GAME DATA — EDIT THIS SECTION TO ADD GAMES
+     ═══════════════════════════════════════════════
+  Each game object:
+    name     – shown on hover
+    category – shown on hover + used for filtering
+    url      – iframe src (your game link)
+    thumb    – thumbnail image URL (leave "" for auto emoji)
+    emoji    – fallback emoji if no thumb
+  Add as many as you like!
+-->
+<script>
+const GAMES = [
+  /* ── ACTION ── */
+  {
+    name: "10 Minutes Till Dawn",
+    category: "Action",
+    url: "https://unb10ck3dgam3s.github.io/data.unb10ck3dgam3s.github.io/10minutestilldawn/",
+    thumb: "https://github.com/unb10ck3dgam3s/data.unb10ck3dgam3s.github.io/blob/main/10minutestilldawn/media.png?raw=true",
+    emoji: ""
+  },
+  {
+    name: "1v1.LOL",
+    category: "Action",
+    url: "https://unb10ck3dgam3s.github.io/data.unb10ck3dgam3s.github.io/1v1.lol/",
+    thumb: "https://github.com/unb10ck3dgam3s/data.unb10ck3dgam3s.github.io/blob/main/1v1.lol/splash.png?raw=true",
+    emoji: ""
+  },
+  {
+    name: "2048",
+    category: "Puzzle",
+    url: "https://unb10ck3dgam3s.github.io/data.unb10ck3dgam3s.github.io/2048/",
+    thumb: "https://github.com/unb10ck3dgam3s/data.unb10ck3dgam3s.github.io/blob/main/2048/meta/apple-touch-icon.png?raw=true",
+    emoji: "🥷"
+  },
+  /* ── PUZZLE ── */
+  {
+    name: "A Dance of Fire and Ice",
+    category: "Puzzle",
+    url: "https://unb10ck3dgam3s.github.io/data.unb10ck3dgam3s.github.io/adanceoffireandice/",
+    thumb: "https://github.com/unb10ck3dgam3s/data.unb10ck3dgam3s.github.io/blob/main/adanceoffireandice/splash.png?raw=true",
+    emoji: ""
+  },
+  {
+    name: "A Dark Room",
+    category: "Puzzle",
+    url: "https://unb10ck3dgam3s.github.io/data.unb10ck3dgam3s.github.io/adarkroom/",
+    thumb: "https://github.com/unb10ck3dgam3s/data.unb10ck3dgam3s.github.io/blob/main/adarkroom/images.png?raw=true",
+    emoji: ""
+  },
+  {
+    name: "Adrenaline Challenge",
+    category: "Puzzle",
+    url: "https://unb10ck3dgam3s.github.io/data.unb10ck3dgam3s.github.io/adrenalinechallenge/",
+    thumb: "https://github.com/unb10ck3dgam3s/data.unb10ck3dgam3s.github.io/blob/main/adrenalinechallenge/adrenalinechallenge.jpg?raw=true",
+    emoji: ""
+  },
+  /* ── RACING ── */
+  {
+    name: "Basket Random",
+    category: "Racing",
+    url: "https://unb10ck3dgam3s.github.io/data.unb10ck3dgam3s.github.io/basketrandom/",
+    thumb: "https://github.com/unb10ck3dgam3s/data.unb10ck3dgam3s.github.io/blob/main/basketrandom/splash.jpeg?raw=true",
+    emoji: ""
+  },
+  {
+    name: "Bitlife",
+    category: "Simulator",
+    url: "https://unb10ck3dgam3s.github.io/data.unb10ck3dgam3s.github.io/bitlife/",
+    thumb: "https://github.com/unb10ck3dgam3s/data.unb10ck3dgam3s.github.io/blob/main/bitlife/logo.png?raw=true",
+    emoji: "🏍️"
+  },
+  {
+    name: "Traffic Racer",
+    category: "Racing",
+    url: "",
+    thumb: "",
+    emoji: "🚗"
+  },
+  /* ── SPORTS ── */
+  {
+    name: "Basketball Stars",
+    category: "Sports",
+    url: "",
+    thumb: "",
+    emoji: "🏀"
+  },
+  {
+    name: "Soccer Pro",
+    category: "Sports",
+    url: "",
+    thumb: "",
+    emoji: "⚽"
+  },
+  /* ── IO GAMES ── */
+  {
+    name: "Agar.io",
+    category: "IO",
+    url: "https://agar.io",
+    thumb: "",
+    emoji: "🟢"
+  },
+  {
+    name: "Slither.io",
+    category: "IO",
+    url: "https://slither.io",
+    thumb: "",
+    emoji: "🐍"
+  },
+  /* ── 2 PLAYER ── */
+  {
+    name: "2-Player Chess",
+    category: "2 Player",
+    url: "",
+    thumb: "",
+    emoji: "♟️"
+  },
+  /* ── ADVENTURE ── */
+  {
+    name: "Dungeon Quest",
+    category: "Adventure",
+    url: "",
+    thumb: "",
+    emoji: "🗡️"
+  },
+  {
+    name: "Island Escape",
+    category: "Adventure",
+    url: "",
+    thumb: "",
+    emoji: "🏝️"
+  },
+  /* ── CASUAL ── */
+  {
+    name: "Fruit Slice",
+    category: "Casual",
+    url: "",
+    thumb: "",
+    emoji: "🍎"
+  },
+  {
+    name: "Stack Balls",
+    category: "Casual",
+    url: "",
+    thumb: "",
+    emoji: "⚪"
+  },
+  /* ── SHOOTING ── */
+  {
+    name: "Space Shooter",
+    category: "Shooting",
+    url: "",
+    thumb: "",
+    emoji: "🚀"
+  },
+  {
+    name: "Tower Defense",
+    category: "Shooting",
+    url: "",
+    thumb: "",
+    emoji: "🗼"
+  },
+];
+
+/* ══════════════════════════════════════════
+   ADSENSE CONFIG — replace data-ad-client
+   and data-ad-slot with your own values
+   ══════════════════════════════════════════ */
+const ADSENSE = {
+  client: "ca-pub-XXXXXXXXXXXXXXXXX",   // ← your AdSense publisher ID
+  slots: {
+    leaderboard: "1234567890",          // ← top leaderboard slot
+    sidebar: "0987654321",              // ← sidebar slot
+    modal: "1122334455",                // ← in-modal banner slot
+  }
+};
+</script>
+
+<!-- ═══════════════ HTML ═══════════════ -->
+
+<nav>
+  <div class="logo">Arcade<span>Zone</span></div>
+  <div class="nav-search">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    <input type="text" id="search-input" placeholder="Search games…">
+  </div>
+  <div class="nav-right">
+    <button class="nav-btn outline">Log In</button>
+    <button class="nav-btn fill">Sign Up</button>
+  </div>
+</nav>
+
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <aside id="sidebar">
+    <div class="sidebar-section">
+      <div class="sidebar-label">Browse</div>
+      <a class="sidebar-item active" data-cat="all" href="#">
+        <span class="sidebar-icon">🏠</span> All Games
+      </a>
+      <a class="sidebar-item" data-cat="Action" href="#">
+        <span class="sidebar-icon">⚔️</span> Action
+      </a>
+      <a class="sidebar-item" data-cat="Puzzle" href="#">
+        <span class="sidebar-icon">🧩</span> Puzzle
+      </a>
+      <a class="sidebar-item" data-cat="Racing" href="#">
+        <span class="sidebar-icon">🏎️</span> Racing
+      </a>
+      <a class="sidebar-item" data-cat="Sports" href="#">
+        <span class="sidebar-icon">⚽</span> Sports
+      </a>
+      <a class="sidebar-item" data-cat="IO" href="#">
+        <span class="sidebar-icon">🟢</span> IO Games
+      </a>
+      <a class="sidebar-item" data-cat="2 Player" href="#">
+        <span class="sidebar-icon">👥</span> 2 Player
+      </a>
+      <a class="sidebar-item" data-cat="Adventure" href="#">
+        <span class="sidebar-icon">🗡️</span> Adventure
+      </a>
+      <a class="sidebar-item" data-cat="Casual" href="#">
+        <span class="sidebar-icon">🎯</span> Casual
+      </a>
+      <a class="sidebar-item" data-cat="Shooting" href="#">
+        <span class="sidebar-icon">🔫</span> Shooting
+      </a>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main id="main-content">
+
+    <!-- TOP LEADERBOARD AD -->
+    <div class="ad-slot ad-slot-leaderboard" id="ad-leaderboard">
+      <!-- Google AdSense Leaderboard 728×90 -->
+      <!--
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-XXXXXXXXXXXXXXXXX"
+           data-ad-slot="1234567890"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      -->
+      728×90 Leaderboard Ad
+    </div>
+
+    <!-- HERO -->
+    <div class="hero" id="hero-section">
+      <div class="hero-tag">🎮 Free Online Games</div>
+      <h1>Play <em>1000+ Games</em><br>No Download Needed</h1>
+      <p>Instant browser games — action, puzzle, racing, IO, and more. Jump in and play right now.</p>
+      <button class="hero-btn" onclick="scrollToGames()">▶ Play Now</button>
+      <div class="hero-float">🕹️</div>
+    </div>
+
+    <!-- FEATURED / ALL GAMES -->
+    <section id="games-section">
+      <div class="section-hdr">
+        <h2 id="section-title">🔥 All Games</h2>
+        <span class="pill" id="game-count"></span>
+        <a href="#" id="see-all-link">See All →</a>
+      </div>
+      <div class="game-grid" id="game-grid"></div>
+    </section>
+
+    <!-- MID-PAGE AD -->
+    <div class="ad-slot ad-slot-leaderboard" id="ad-mid">
+      <!-- Google AdSense Responsive Rectangle 300×250 or leaderboard -->
+      <!--
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-XXXXXXXXXXXXXXXXX"
+           data-ad-slot="1122334455"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      -->
+      728×90 Mid-Page Ad
+    </div>
+
+  </main>
+
+  <!-- RIGHT SIDEBAR ADS -->
+  <div class="ad-sidebar">
+    <div class="ad-slot ad-slot-rect" id="ad-sidebar-top">
+      <!-- AdSense 300×250 -->
+      <!--
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-XXXXXXXXXXXXXXXXX"
+           data-ad-slot="0987654321"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      -->
+      300×250 Ad
+    </div>
+    <div class="ad-slot ad-slot-skyscraper" id="ad-sidebar-sky">
+      <!-- AdSense 160×600 -->
+      <!--
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-XXXXXXXXXXXXXXXXX"
+           data-ad-slot="0987654321"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      -->
+      160×600 Ad
+    </div>
+  </div>
+
+</div>
+
+<!-- GAME MODAL -->
+<div id="modal-bg">
+  <div id="modal-box">
+    <div class="modal-hdr">
+      <span class="modal-title" id="modal-title">Game</span>
+      <button title="Fullscreen" onclick="goFullscreen()">⛶</button>
+      <button title="Close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-ad">
+      <!-- AdSense mobile banner 320×50 shown above game -->
+      <!--
+      <ins class="adsbygoogle"
+           style="display:inline-block;width:320px;height:50px"
+           data-ad-client="ca-pub-XXXXXXXXXXXXXXXXX"
+           data-ad-slot="1122334455"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      -->
+      <div class="ad-slot ad-slot-banner" style="width:320px;">Banner Ad (320×50)</div>
+    </div>
+    <iframe id="modal-iframe" src="" allowfullscreen allow="autoplay; fullscreen"></iframe>
+  </div>
+</div>
+
+<footer>
+  <strong style="font-family:'Exo 2',sans-serif;color:var(--text);">ArcadeZone</strong> — Free Online Games · &copy; 2025<br>
+  <span style="color:var(--muted);">No download required. Play directly in your browser.</span>
+</footer>
+
+<script>
+/* ─── RENDER GAMES ──────────────────────────── */
+let currentCat = 'all';
+let searchTerm = '';
+
+function getFiltered() {
+  return GAMES.filter(g => {
+    const matchCat = currentCat === 'all' || g.category === currentCat;
+    const matchSearch = g.name.toLowerCase().includes(searchTerm.toLowerCase());
+    return matchCat && matchSearch;
+  });
+}
+
+function renderGames() {
+  const grid = document.getElementById('game-grid');
+  const filtered = getFiltered();
+  document.getElementById('game-count').textContent = filtered.length + ' games';
+  grid.innerHTML = '';
+  if (!filtered.length) {
+    grid.innerHTML = '<p style="color:var(--muted);grid-column:1/-1;padding:24px 0;">No games found.</p>';
+    return;
+  }
+  filtered.forEach((game, i) => {
+    const card = document.createElement('div');
+    card.className = 'game-card';
+    card.title = game.name;
+    card.innerHTML = game.thumb
+      ? `<img class="game-thumb" src="${game.thumb}" alt="${game.name}" loading="lazy">`
+      : `<div class="game-thumb-placeholder"><span>${game.emoji || '🎮'}</span></div>`;
+    card.innerHTML += `
+      <div class="game-overlay">
+        <div class="game-name">${game.name}</div>
+        <div class="game-category">${game.category}</div>
+        <div class="play-chip">▶ Play</div>
+      </div>`;
+    card.addEventListener('click', () => openGame(game));
+    grid.appendChild(card);
+  });
+}
+
+/* ─── SIDEBAR NAV ───────────────────────────── */
+document.querySelectorAll('.sidebar-item').forEach(item => {
+  item.addEventListener('click', e => {
+    e.preventDefault();
+    document.querySelectorAll('.sidebar-item').forEach(x => x.classList.remove('active'));
+    item.classList.add('active');
+    currentCat = item.dataset.cat;
+    const title = currentCat === 'all' ? '🔥 All Games' : item.textContent.trim();
+    document.getElementById('section-title').textContent = title;
+    renderGames();
+    scrollToGames();
+  });
+});
+
+/* ─── SEARCH ────────────────────────────────── */
+document.getElementById('search-input').addEventListener('input', e => {
+  searchTerm = e.target.value;
+  renderGames();
+});
+
+/* ─── MODAL / IFRAME ────────────────────────── */
+function openGame(game) {
+  if (!game.url) {
+    alert(`"${game.name}" — Add the iframe URL in the GAMES array to play this game.`);
+    return;
+  }
+  document.getElementById('modal-title').textContent = game.name;
+  document.getElementById('modal-iframe').src = game.url;
+  document.getElementById('modal-bg').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('modal-bg').classList.remove('open');
+  document.getElementById('modal-iframe').src = '';
+  document.body.style.overflow = '';
+}
+
+function goFullscreen() {
+  const iframe = document.getElementById('modal-iframe');
+  if (iframe.requestFullscreen) iframe.requestFullscreen();
+}
+
+document.getElementById('modal-bg').addEventListener('click', e => {
+  if (e.target === document.getElementById('modal-bg')) closeModal();
+});
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeModal();
+});
+
+/* ─── HELPERS ───────────────────────────────── */
+function scrollToGames() {
+  document.getElementById('games-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+/* ─── INIT ──────────────────────────────────── */
+renderGames();
+
+/* ─── ADSENSE LOADER (uncomment when ready) ─── */
+// const s = document.createElement('script');
+// s.async = true;
+// s.src = `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE.client}`;
+// s.crossOrigin = 'anonymous';
+// document.head.appendChild(s);
+</script>
+</body>
+</html>
