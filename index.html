@@ -304,6 +304,95 @@
   /* ad strip in modal */
   .modal-ad { height: 60px; display: flex; align-items: center; justify-content: center; }
 
+  /* ─── INTERSTITIAL SCREEN ────────────────── */
+  #interstitial {
+    display: none; position: fixed; inset: 0; z-index: 1000;
+    background: rgba(8,10,20,.97);
+    align-items: center; justify-content: center; flex-direction: column;
+    gap: 0;
+  }
+  #interstitial.open { display: flex; }
+
+  .intrs-box {
+    width: min(640px, 94vw);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    overflow: hidden;
+    display: flex; flex-direction: column;
+    box-shadow: 0 32px 80px rgba(0,0,0,.6);
+  }
+
+  /* top bar with game name + skip timer */
+  .intrs-topbar {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 12px 18px;
+    background: var(--surface2);
+    border-bottom: 1px solid var(--border);
+    font-size: .85rem; color: var(--muted);
+  }
+  .intrs-game-name {
+    font-family: 'Exo 2', sans-serif;
+    font-weight: 800; font-size: 1rem; color: var(--text);
+  }
+  #skip-btn {
+    background: transparent; border: 1.5px solid var(--border);
+    color: var(--muted); border-radius: 50px;
+    padding: 6px 16px; font-size: .8rem; font-weight: 600;
+    cursor: not-allowed; transition: all .2s; white-space: nowrap;
+  }
+  #skip-btn.ready {
+    border-color: var(--accent2); color: var(--accent2);
+    cursor: pointer;
+  }
+  #skip-btn.ready:hover {
+    background: var(--accent2); color: #000;
+  }
+
+  /* ad zone inside interstitial */
+  .intrs-ad-zone {
+    min-height: 250px;
+    display: flex; align-items: center; justify-content: center;
+    padding: 24px;
+    background: var(--bg);
+  }
+  .intrs-ad-inner {
+    width: 100%; max-width: 480px;
+  }
+
+  /* progress bar */
+  .intrs-progress-wrap {
+    height: 4px; background: var(--border);
+  }
+  .intrs-progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    width: 100%;
+    transition: width 1s linear;
+  }
+
+  /* loading hint below */
+  .intrs-footer {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 12px 18px;
+    background: var(--surface2);
+    border-top: 1px solid var(--border);
+    font-size: .78rem; color: var(--muted);
+    gap: 12px;
+  }
+  .intrs-loading {
+    display: flex; align-items: center; gap: 8px;
+  }
+  .intrs-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--accent2);
+    animation: pulse 1s infinite;
+  }
+  @keyframes pulse {
+    0%,100% { opacity: .3; transform: scale(.8); }
+    50% { opacity: 1; transform: scale(1.2); }
+  }
+
   /* ─── FOOTER ──────────────────────────────── */
   footer {
     background: var(--surface); border-top: 1px solid var(--border);
@@ -315,8 +404,6 @@
   ::-webkit-scrollbar-track { background: transparent; }
   ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
 </style>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1575608125795498"
-     crossorigin="anonymous"></script>
 </head>
 <body>
 
@@ -335,76 +422,76 @@
 const GAMES = [
   /* ── ACTION ── */
   {
-    name: "10 Minutes Till Dawn",
+    name: "Stickman Warriors",
     category: "Action",
-    url: "https://unb10ck3dgam3s.github.io/data.unb10ck3dgam3s.github.io/10minutestilldawn/",
-    thumb: "https://github.com/unb10ck3dgam3s/data.unb10ck3dgam3s.github.io/blob/main/10minutestilldawn/media.png?raw=true",
-    emoji: ""
+    url: "https://www.crazygames.com/embed/stickman-warriors",
+    thumb: "",
+    emoji: "⚔️"
   },
   {
-    name: "1v1.LOL",
+    name: "Tank Battle",
     category: "Action",
-    url: "https://unb10ck3dgam3s.github.io/data.unb10ck3dgam3s.github.io/1v1.lol/",
-    thumb: "https://github.com/unb10ck3dgam3s/data.unb10ck3dgam3s.github.io/blob/main/1v1.lol/splash.png?raw=true",
-    emoji: ""
+    url: "https://www.crazygames.com/embed/battle-tank-2",
+    thumb: "",
+    emoji: "🔫"
   },
   {
-    name: "2048",
-    category: "Puzzle",
-    url: "https://unb10ck3dgam3s.github.io/data.unb10ck3dgam3s.github.io/2048/",
-    thumb: "https://github.com/unb10ck3dgam3s/data.unb10ck3dgam3s.github.io/blob/main/2048/meta/apple-touch-icon.png?raw=true",
+    name: "Ninja Runner",
+    category: "Action",
+    url: "",
+    thumb: "",
     emoji: "🥷"
   },
   /* ── PUZZLE ── */
   {
-    name: "A Dance of Fire and Ice",
+    name: "Block Puzzle",
     category: "Puzzle",
-    url: "https://unb10ck3dgam3s.github.io/data.unb10ck3dgam3s.github.io/adanceoffireandice/",
-    thumb: "https://github.com/unb10ck3dgam3s/data.unb10ck3dgam3s.github.io/blob/main/adanceoffireandice/splash.png?raw=true",
-    emoji: ""
+    url: "",
+    thumb: "",
+    emoji: "🧩"
   },
   {
-    name: "A Dark Room",
+    name: "Color Sort",
     category: "Puzzle",
-    url: "https://unb10ck3dgam3s.github.io/data.unb10ck3dgam3s.github.io/adarkroom/",
-    thumb: "https://github.com/unb10ck3dgam3s/data.unb10ck3dgam3s.github.io/blob/main/adarkroom/images.png?raw=true",
-    emoji: ""
+    url: "",
+    thumb: "",
+    emoji: "🎨"
   },
   {
-    name: "Adrenaline Challenge",
+    name: "Bubble Shooter",
     category: "Puzzle",
-    url: "https://unb10ck3dgam3s.github.io/data.unb10ck3dgam3s.github.io/adrenalinechallenge/",
-    thumb: "https://github.com/unb10ck3dgam3s/data.unb10ck3dgam3s.github.io/blob/main/adrenalinechallenge/adrenalinechallenge.jpg?raw=true",
-    emoji: ""
+    url: "",
+    thumb: "",
+    emoji: "🫧"
   },
   /* ── RACING ── */
   {
-    name: "Basket Random",
+    name: "Drift Kings",
     category: "Racing",
-    url: "https://unb10ck3dgam3s.github.io/data.unb10ck3dgam3s.github.io/basketrandom/",
-    thumb: "https://github.com/unb10ck3dgam3s/data.unb10ck3dgam3s.github.io/blob/main/basketrandom/splash.jpeg?raw=true",
-    emoji: ""
+    url: "",
+    thumb: "",
+    emoji: "🏎️"
   },
   {
-    name: "Bitlife",
-    category: "Simulator",
-    url: "https://unb10ck3dgam3s.github.io/data.unb10ck3dgam3s.github.io/bitlife/",
-    thumb: "https://github.com/unb10ck3dgam3s/data.unb10ck3dgam3s.github.io/blob/main/bitlife/logo.png?raw=true",
+    name: "Moto X3M",
+    category: "Racing",
+    url: "https://www.crazygames.com/embed/moto-x3m",
+    thumb: "",
     emoji: "🏍️"
   },
   {
-    name: "Chrome Dino",
+    name: "Traffic Racer",
     category: "Racing",
-    url: "https://unb10ck3dgam3s.github.io/data.unb10ck3dgam3s.github.io/chromedino/",
-    thumb: "https://github.com/unb10ck3dgam3s/data.unb10ck3dgam3s.github.io/raw/refs/heads/main/chromedino/chromedino.ico",
+    url: "",
+    thumb: "",
     emoji: "🚗"
   },
   /* ── SPORTS ── */
   {
-    name: "Cookie Clicker",
+    name: "Basketball Stars",
     category: "Sports",
-    url: "https://unb10ck3dgam3s.github.io/data.unb10ck3dgam3s.github.io/cookieclicker/",
-    thumb: "https://github.com/unb10ck3dgam3s/data.unb10ck3dgam3s.github.io/raw/refs/heads/main/cookieclicker/img/icon.ico",
+    url: "",
+    thumb: "",
     emoji: "🏀"
   },
   {
@@ -489,7 +576,7 @@ const GAMES = [
    and data-ad-slot with your own values
    ══════════════════════════════════════════ */
 const ADSENSE = {
-  client: "ca-pub-1575608125795498",   // ← your AdSense publisher ID
+  client: "ca-pub-XXXXXXXXXXXXXXXXX",   // ← your AdSense publisher ID
   slots: {
     leaderboard: "1234567890",          // ← top leaderboard slot
     sidebar: "0987654321",              // ← sidebar slot
@@ -557,15 +644,15 @@ const ADSENSE = {
     <!-- TOP LEADERBOARD AD -->
     <div class="ad-slot ad-slot-leaderboard" id="ad-leaderboard">
       <!-- Google AdSense Leaderboard 728×90 -->
-      <!--
+      
       <ins class="adsbygoogle"
            style="display:block"
-           data-ad-client="ca-pub-XXXXXXXXXXXXXXXXX"
-           data-ad-slot="1234567890"
+           data-ad-client="ca-pub-1575608125795498"
+           data-ad-slot="4971416765"
            data-ad-format="auto"
            data-full-width-responsive="true"></ins>
       <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-      -->
+     
       728×90 Leaderboard Ad
     </div>
 
@@ -591,15 +678,15 @@ const ADSENSE = {
     <!-- MID-PAGE AD -->
     <div class="ad-slot ad-slot-leaderboard" id="ad-mid">
       <!-- Google AdSense Responsive Rectangle 300×250 or leaderboard -->
-      <!--
+      
       <ins class="adsbygoogle"
            style="display:block"
-           data-ad-client="ca-pub-XXXXXXXXXXXXXXXXX"
-           data-ad-slot="1122334455"
+           data-ad-client="ca-pub-1575608125795498"
+           data-ad-slot="5525950534"
            data-ad-format="auto"
            data-full-width-responsive="true"></ins>
       <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-      -->
+     
       728×90 Mid-Page Ad
     </div>
 
@@ -609,32 +696,80 @@ const ADSENSE = {
   <div class="ad-sidebar">
     <div class="ad-slot ad-slot-rect" id="ad-sidebar-top">
       <!-- AdSense 300×250 -->
-      <!--
+      
       <ins class="adsbygoogle"
            style="display:block"
-           data-ad-client="ca-pub-XXXXXXXXXXXXXXXXX"
-           data-ad-slot="0987654321"
+           data-ad-client="ca-pub-1575608125795498"
+           data-ad-slot="2469797965"
            data-ad-format="auto"
            data-full-width-responsive="true"></ins>
       <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-      -->
+     
       300×250 Ad
     </div>
     <div class="ad-slot ad-slot-skyscraper" id="ad-sidebar-sky">
       <!-- AdSense 160×600 -->
-      <!--
+      
       <ins class="adsbygoogle"
            style="display:block"
-           data-ad-client="ca-pub-XXXXXXXXXXXXXXXXX"
-           data-ad-slot="0987654321"
+           data-ad-client="ca-pub-1575608125795498"
+           data-ad-slot="1506246252"
            data-ad-format="auto"
            data-full-width-responsive="true"></ins>
       <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-      -->
+     
       160×600 Ad
     </div>
   </div>
 
+</div>
+
+<!-- ═══════════════════════════════════════════
+     INTERSTITIAL AD SCREEN
+     Shows for INTRS_SECONDS before game loads.
+     Put your 300×250 or large AdSense unit inside
+     .intrs-ad-inner below.
+     ═══════════════════════════════════════════ -->
+<div id="interstitial">
+  <div class="intrs-box">
+
+    <div class="intrs-topbar">
+      <div>
+        Loading: <span class="intrs-game-name" id="intrs-title">Game</span>
+      </div>
+      <button id="skip-btn" disabled>Skip in <span id="skip-countdown">5</span>s</button>
+    </div>
+
+    <!-- ★ AD ZONE — replace placeholder with your AdSense <ins> tag -->
+    <div class="intrs-ad-zone">
+      <div class="intrs-ad-inner">
+        <div class="ad-slot ad-slot-rect" style="width:100%;height:250px;">
+          Google AdSense 300×250 Interstitial
+          <ins class="adsbygoogle"
+               style="display:block;width:300px;height:250px;"
+               data-ad-client="ca-pub-1575608125795498"
+               data-ad-slot="6954582276"
+               data-ad-format="fixed"></ins>
+          <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+         
+          300×250 Interstitial Ad
+        </div>
+      </div>
+    </div>
+
+    <div class="intrs-progress-wrap">
+      <div class="intrs-progress-bar" id="intrs-bar"></div>
+    </div>
+
+    <div class="intrs-footer">
+      <div class="intrs-loading">
+        <div class="intrs-dot"></div>
+        Game is loading in the background…
+      </div>
+      <span id="intrs-pct">0%</span>
+    </div>
+
+  </div>
 </div>
 
 <!-- GAME MODAL -->
@@ -647,13 +782,13 @@ const ADSENSE = {
     </div>
     <div class="modal-ad">
       <!-- AdSense mobile banner 320×50 shown above game -->
-      <!--
+      
       <ins class="adsbygoogle"
            style="display:inline-block;width:320px;height:50px"
-           data-ad-client="ca-pub-XXXXXXXXXXXXXXXXX"
-           data-ad-slot="1122334455"></ins>
+           data-ad-client="ca-pub-1575608125795498"
+           data-ad-slot="1199692711"></ins>
       <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-      -->
+     
       <div class="ad-slot ad-slot-banner" style="width:320px;">Banner Ad (320×50)</div>
     </div>
     <iframe id="modal-iframe" src="" allowfullscreen allow="autoplay; fullscreen"></iframe>
@@ -725,6 +860,87 @@ document.getElementById('search-input').addEventListener('input', e => {
   renderGames();
 });
 
+/* ─── INTERSTITIAL ──────────────────────────── */
+const INTRS_SECONDS = 5;   // ← change countdown duration here
+let intrsTimer = null;
+let pendingGame = null;
+
+function openGame(game) {
+  if (!game.url) {
+    alert(`"${game.name}" — Add the iframe URL in the GAMES array to play this game.`);
+    return;
+  }
+  pendingGame = game;
+  showInterstitial(game);
+}
+
+function showInterstitial(game) {
+  // reset UI
+  const bar = document.getElementById('intrs-bar');
+  const skipBtn = document.getElementById('skip-btn');
+  const countdown = document.getElementById('skip-countdown');
+  const pct = document.getElementById('intrs-pct');
+
+  document.getElementById('intrs-title').textContent = game.name;
+  bar.style.transition = 'none';
+  bar.style.width = '100%';
+  skipBtn.disabled = true;
+  skipBtn.classList.remove('ready');
+  countdown.textContent = INTRS_SECONDS;
+  pct.textContent = '0%';
+  document.body.style.overflow = 'hidden';
+  document.getElementById('interstitial').classList.add('open');
+
+  // kick off progress bar animation
+  requestAnimationFrame(() => {
+    bar.style.transition = `width ${INTRS_SECONDS}s linear`;
+    bar.style.width = '0%';
+  });
+
+  // fake loading percentage
+  let elapsed = 0;
+  const fakeLoad = setInterval(() => {
+    elapsed += 200;
+    const rawPct = Math.min(95, Math.round((elapsed / (INTRS_SECONDS * 1000)) * 100));
+    pct.textContent = rawPct + '%';
+  }, 200);
+
+  // countdown
+  let remaining = INTRS_SECONDS;
+  intrsTimer = setInterval(() => {
+    remaining--;
+    countdown.textContent = remaining;
+    if (remaining <= 0) {
+      clearInterval(intrsTimer);
+      clearInterval(fakeLoad);
+      pct.textContent = '100%';
+      skipBtn.textContent = 'Play Now ▶';
+      skipBtn.disabled = false;
+      skipBtn.classList.add('ready');
+      // auto-launch after 1 more second if user hasn't clicked
+      setTimeout(() => {
+        if (document.getElementById('interstitial').classList.contains('open')) {
+          launchGame();
+        }
+      }, 1000);
+    }
+  }, 1000);
+}
+
+function launchGame() {
+  clearInterval(intrsTimer);
+  document.getElementById('interstitial').classList.remove('open');
+  if (!pendingGame) return;
+  document.getElementById('modal-title').textContent = pendingGame.name;
+  document.getElementById('modal-iframe').src = pendingGame.url;
+  document.getElementById('modal-bg').classList.add('open');
+  // keep body overflow hidden (modal is still open)
+}
+
+document.getElementById('skip-btn').addEventListener('click', () => {
+  if (!document.getElementById('skip-btn').disabled) launchGame();
+});
+
 /* ─── MODAL / IFRAME ────────────────────────── */
 function openGame(game) {
   if (!game.url) {
@@ -738,9 +954,12 @@ function openGame(game) {
 }
 
 function closeModal() {
+  clearInterval(intrsTimer);
+  document.getElementById('interstitial').classList.remove('open');
   document.getElementById('modal-bg').classList.remove('open');
   document.getElementById('modal-iframe').src = '';
   document.body.style.overflow = '';
+  pendingGame = null;
 }
 
 function goFullscreen() {
